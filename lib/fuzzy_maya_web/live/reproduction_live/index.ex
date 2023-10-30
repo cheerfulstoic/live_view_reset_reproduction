@@ -28,6 +28,7 @@ defmodule LiveViewResetReproductionWeb.ReproductionLive.Index do
         <tr>
           <th>Practitioner 1</th>
           <th>Score</th>
+          <th>Run</th>
           <th>Practitioner 2</th>
         </tr>
       </thead>
@@ -51,6 +52,9 @@ defmodule LiveViewResetReproductionWeb.ReproductionLive.Index do
             <div class="font-bold">
               <%= Float.round(match.score, 2) %>
             </div>
+          </td>
+          <td class="p-4">
+            <%= match.run_id %>
           </td>
           <td class="p-4">
             <%= match.record2.name %>
