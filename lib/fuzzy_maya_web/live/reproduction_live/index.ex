@@ -10,7 +10,7 @@ defmodule LiveViewResetReproductionWeb.ReproductionLive.Index do
     <form phx-change="update-runs">
       <ul>
         <li :for={run <- @matcher_runs}>
-          <input checked={run.id in @run_ids} id="run_ids" name="run_ids[]" type="checkbox" value={run.id}>
+          <input checked={run.id in @run_ids} id={"run-#{run.id}"} name="run_ids[]" type="checkbox" value={run.id}>
 
           <%= run.name %>
         </li>
@@ -82,6 +82,7 @@ defmodule LiveViewResetReproductionWeb.ReproductionLive.Index do
      |> assign(matcher_runs: matcher_runs)
      |> assign(run_ids: [])
      |> assign(page: 1, per_page: 20)
+     |> stream_configure(:matches, dom_id: &("match-#{&1.record1_id}-#{&1.record2_id}"))
      |> stream(:matches, [])
      |> paginate_matches(1)}
   end
